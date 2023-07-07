@@ -6,11 +6,12 @@ import db from "mongoose";
 import routes from "./routes";
 import { error } from "console";
 import { json, urlencoded } from "body-parser";
+import cors from "cors";
 
 const app = express();
-
+app.use(cors())
 app.use(json());
-app.use(urlencoded());
+app.use(urlencoded({extended:true}));
 
 app.use("/", routes);
 app.use((error:Error, req:Request, res:Response) => {
